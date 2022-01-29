@@ -23,6 +23,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "io_tester.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,12 +97,18 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
+  // Turn off buffers, so I/O occurs immediately
+  setvbuf(stdin,  NULL, _IONBF, 0);
+  setvbuf(stdout, NULL, _IONBF, 0);
+  //setvbuf(stderr, NULL, _IONBF, 0);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    io_scan();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -294,7 +302,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : PI_WKUP_Pin */
   GPIO_InitStruct.Pin = PI_WKUP_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(PI_WKUP_GPIO_Port, &GPIO_InitStruct);
 
