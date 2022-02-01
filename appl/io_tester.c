@@ -14,15 +14,15 @@
 enum io_id_t
 {
   IN_DG,      // Input. 1 - on, 0 - off, internal OD 0 - error (overcurrent, overtemperature etc)
-  PWR_MODE,   // Input. 1 - charge, 0 - discharge
+  PWR_MODE,   // Input. 0 - charge, 1 - discharge
   PI_WKUP,    // OD and push button. Wakeup raspberry board
   PWR_CTL,    // Input push button. Short push - discharge on, push  longer than 2.5s - discharge off
   CHRG_LVL_1, // OD LED Low lever
   CHRG_LVL_2, // OD LED
   CHRG_LVL_3, // OD LED
   CHRG_LVL_4, // OD LED Hi level
-  CHRG_OK,    // OD LED Carge complete
-  AC_OK,      // OD LED Input voltage is recognized as a good source
+  CHRG_OK,    // OD LED Charge in progress (1s blinking - NTC or timer fault)
+  AC_OK,      // OD LED Input voltage is recognized as a good source (1 discharging)
   IO_CNT,
 };
 
@@ -121,7 +121,7 @@ struct io_ctl_t
     .io_id = AC_OK,
     .pin = AC_OK_Pin,
     .port = AC_OK_GPIO_Port,
-    .pin_get = HAL_GPIO_ReadPin,
+    .pin_get = HAL_GPIO_ReadPin_Rev,
   },
 };
 
@@ -148,13 +148,13 @@ void io_ctl(void)
     // Charging mode
     case 'c':
     case 'C':
-      io_list_set(PWR_MODE, GPIO_PIN_SET);
+      io_list_set(PWR_MODE, GPIO_PIN_RESET);
       break;
 
     // Disharging mode
     case 'd':
     case 'D':
-      io_list_set(PWR_MODE, GPIO_PIN_RESET);
+      io_list_set(PWR_MODE, GPIO_PIN_SET);
       break;
 
     // Load on
