@@ -155,6 +155,8 @@ void io_ctl(void)
     case 'd':
     case 'D':
       io_list_set(PWR_MODE, GPIO_PIN_SET);
+      io_list_set(PWR_CTL, GPIO_PIN_SET);
+      io_list_set(PWR_CTL, GPIO_PIN_RESET);
       break;
 
     // Load on
@@ -193,7 +195,7 @@ void io_observe(void)
   }
 
   if (must_upd)
-    printf("\n%s", io_str);
+    printf("\r%s", io_str);
 }
 
 void io_scan(void)
