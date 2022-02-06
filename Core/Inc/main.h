@@ -57,6 +57,28 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PI_WKUP_Pin GPIO_PIN_13
+#define PI_WKUP_GPIO_Port GPIOC
+#define CURR_MON_Pin GPIO_PIN_1
+#define CURR_MON_GPIO_Port GPIOB
+#define PWR_CTL_Pin GPIO_PIN_13
+#define PWR_CTL_GPIO_Port GPIOE
+#define CHRG_LVL_1_Pin GPIO_PIN_15
+#define CHRG_LVL_1_GPIO_Port GPIOB
+#define CHRG_LVL_2_Pin GPIO_PIN_9
+#define CHRG_LVL_2_GPIO_Port GPIOD
+#define PWR_MODE_Pin GPIO_PIN_10
+#define PWR_MODE_GPIO_Port GPIOD
+#define CHRG_LVL_4_Pin GPIO_PIN_12
+#define CHRG_LVL_4_GPIO_Port GPIOD
+#define CHRG_OK_Pin GPIO_PIN_13
+#define CHRG_OK_GPIO_Port GPIOD
+#define AC_OK_Pin GPIO_PIN_14
+#define AC_OK_GPIO_Port GPIOD
+#define CHRG_LVL_3_Pin GPIO_PIN_9
+#define CHRG_LVL_3_GPIO_Port GPIOA
+#define IN_DG_Pin GPIO_PIN_10
+#define IN_DG_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
